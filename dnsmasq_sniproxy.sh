@@ -304,7 +304,7 @@ install_dnsmasq(){
 }
 
 install_sniproxy(){
-    for aport in 80 8443; do
+    for aport in 80 8444; do
         netstat -a -n -p | grep LISTEN | grep -P "\d+\.\d+\.\d+\.\d+:${aport}\s+" > /dev/null && echo -e "[${red}Error${plain}] required port ${aport} already in use\n" && exit 1
     done
     install_dependencies
@@ -458,7 +458,7 @@ help(){
 }
 
 install_all(){
-    ports="53 80 443"
+    ports="53 80 8444"
     publicip=$(get_ip)
     hello
     ready_install
@@ -507,7 +507,7 @@ only_dnsmasq(){
 }
 
 only_sniproxy(){
-    ports="80 443"
+    ports="80 8444"
     hello
     ready_install
     install_sniproxy
